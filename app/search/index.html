@@ -1,0 +1,64 @@
+﻿<div class="col-md-12">
+    <h1>Поиск</h1>
+    <div class="well col-lg-4">
+        <div>
+            <h5>Выберите пол:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[1], optionsText: "name", optionsCaption: "Select...", value: Cart.gender'> </select>
+        </div>
+
+        <div>
+            <h5>Выберите страну:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[0], optionsText: "name", optionsCaption: "Select...", value: Cart.country'> </select>
+        </div>
+
+        <div data-bind="with: Cart.country">
+            <h5>Выберите регион:</h5>
+            <select class="form-control" data-bind='select2:{}, options: regions, optionsText: "name", optionsCaption: "Select...", value: $root.Cart.region'> </select>
+        </div>
+
+        <div data-bind="with: Cart.region">
+            <h5>Выберите город:</h5>
+            <select class="form-control" data-bind='select2:{}, options: $root.Cart.CitySorted(cities), optionsText: "name", optionsCaption: "Select...", value: $root.Cart.city'> </select>
+        </div>
+
+        <div data-bind="with: Cart.city">
+            <h5>Выберите школу:</h5>
+            <select class="form-control" data-bind='select2:{}, options: schools, optionsText: "name", optionsCaption: "Select...", value: $parent.school'> </select>
+        </div>
+
+        <div data-bind="with: Cart.city">
+            <h5>Выберите университет:</h5>
+            <select class="form-control" data-bind='select2:{}, options: univers, optionsText: "name", optionsCaption: "Select...", value: $parent.univer'> </select>
+        </div>
+    </div>
+
+    <div style="border: 1px solid; background-color: #fff" class="well col-lg-8">
+        <div class="row">
+            <div class="col-md-8">
+                <h5>Друзья:</h5>
+                <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[2], optionsText: "name", optionsCaption: "Select...", value: Cart.friends'> </select>
+            </div>
+            <div class="col-md-4">
+                <h5>Колличество:</h5>
+                <input type="number" data-bind="value: Cart.friends_num">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h5>Подписчики:</h5>
+                <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[2], optionsText: "name", optionsCaption: "Select...", value: Cart.friends'> </select>
+            </div>
+            <div class="col-md-4">
+                <h5>Колличество:</h5>
+                <input type="number" data-bind="value: Cart.friends_num">
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="col-md-12">
+<button class="btn btn-danger" data-bind='click: $root.Cart.save'>
+    <span>Поиск</span>
+</button>
+</div>
