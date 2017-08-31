@@ -1,0 +1,29 @@
+<div style="border: 1px solid; background-color: #fff" class="well col-lg-8">
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Друзья:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[2], optionsText: "name", optionsCaption: "Select...", value: Filter.friends'> </select>
+        </div>
+        <div class="col-md-4">
+            <h5>Колличество:</h5>
+            <input type="number" data-bind="value: Filter.friends_num">
+        </div>
+    </div>
+
+    <!-- ko if: Filter.friends -->
+        <div data-bind="compose: Filter"></div>
+    <!-- /ko -->
+
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Подписчики:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: [{"name": "option1"}, {"name": "option2"}, {"name": "option3"}], optionsText: "name", optionsCaption: "Select...", value: Filter.followers'> </select>
+
+        </div>
+        <div class="col-md-4">
+            <h5>Колличество:</h5>
+            <input type="number" data-bind="value: Filter.friends_num">
+        </div>
+    </div>
+
+</div>

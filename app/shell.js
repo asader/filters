@@ -6,7 +6,7 @@
                 { route: ['', 'home'],                          moduleId: 'search/index',                title: 'Поиск',           nav: 1 }
 
             ]).buildNavigationModel()
-              .mapUnknownRoutes('hello/index', 'not-found')
+              .mapUnknownRoutes('search/index', 'not-found')
               .activate();
         }
     };
