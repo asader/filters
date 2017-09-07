@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h5 data-bind="text: name"></h5>
+    <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: [{"name": "ids"}, {"name": "profiles"}, {"name": "extended"}], optionsText: "name", optionsCaption: "Select...", value: param'> </select>
+  </div>
+  <div class="col-sm-4">
+    <h5>Колличество:</h5>
+    <input type="number" data-bind="value: limit">
+  </div>
+
+</div>
+<div data-bind="compose: rec"></div>
+
+

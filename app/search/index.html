@@ -1,72 +1,78 @@
-﻿<div class="col-md-12">
+﻿﻿<div class="col-md-12">
     <h1>Поиск</h1>
-    <div class="well col-lg-4">
+    <div class="well col-md-4">
         <div>
             <h5>Имя:</h5>
-            <input class="form-control" data-bind="value: Filter.name"/>
+            <input class="form-control" data-bind="value: name"/>
         </div>
 
         <div>
             <h5>Выберите пол:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[1], optionsText: "name", optionsCaption: "Select...", value: Filter.gender'> </select>
-        </div>
-
-        <div>
-            <h5>Выберите страну:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[0], optionsText: "name", optionsCaption: "Select...", value: Filter.country'> </select>
-        </div>
-
-
-        <div data-bind="with: Filter.country">
-            <h5>Выберите город:</h5>
-            <select class="form-control" data-bind='select2:{}, options: $root.Filter.CitySorted(cities), optionsText: function(item){
-            return item.name + " (" + item.region + ")"}
-
-            , optionsCaption: "Select...", value: $root.Filter.city'> </select>
-        </div>
-
-        <div data-bind="with: Filter.city">
-            <h5>Выберите школу:</h5>
-            <select class="form-control" data-bind='select2:{}, options: schools, optionsText: "name", optionsCaption: "Select...", value: $parent.school'> </select>
-        </div>
-
-        <div data-bind="with: Filter.city">
-            <h5>Выберите университет:</h5>
-            <select class="form-control" data-bind='select2:{}, options: univers, optionsText: "name", optionsCaption: "Select...", value: $parent.univer'> </select>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: getFilters().gender, optionsText: "name", optionsCaption: "Выбрать...", value: gender'> </select>
         </div>
 
         <div>
             <h5>Возраст нижняя граница:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: Filter.minAgeArray, optionsText: "name", optionsCaption: "Select...", value: Filter.minAge'> </select>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: minAgeArray, optionsText: "value", optionsCaption: "Выбрать...", value: minAge'> </select>
         </div>
 
         <div>
             <h5>Возраст верхняя граница:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: Filter.maxAgeArray, optionsText: "name", optionsCaption: "Select...", value: Filter.maxAge'> </select>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: maxAgeArray, optionsText: "value", optionsCaption: "Выбрать...", value: maxAge'> </select>
         </div>
 
         <div>
             <h5>Выберите год:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[4], optionsText: "value", optionsCaption: "Select...", value: Filter.year'> </select>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: getFilters().years, optionsText: "value", optionsCaption: "Выбрать...", value: year'> </select>
         </div>
 
         <div>
             <h5>Выберите месяц:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: filters[5], optionsText: "name", optionsCaption: "Select...", value: Filter.month'> </select>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: getFilters().months, optionsText: "name", optionsCaption: "Выбрать...", value: month'> </select>
         </div>
 
         <div>
             <h5>Выберите день:</h5>
-            <select style="width: 100%!important" class="form-control" data-bind='select2:{}, options: Filter.dayArray, optionsText: "value", optionsCaption: "Select...", value: Filter.day'> </select>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: dayArray, optionsText: "value", optionsCaption: "Выбрать...", value: day'> </select>
+        </div>
+
+        <div>
+            <h5>Выберите страну:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: getFilters().countries, optionsText: "name", optionsCaption: "Выбрать...", value: country'> </select>
+        </div>
+
+
+        <div data-bind="with: country">
+            <h5>Выберите город:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: $root.sortCities(cities), optionsText: function(item){
+            return item.name + " (" + item.region + ")"}
+            , optionsCaption: "Выбрать...", value: $root.city'> </select>
+        </div>
+
+        <div data-bind="with: city">
+            <h5>Выберите школу:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: schools, optionsText: "name", optionsCaption: "Выбрать...", value: $root.school'> </select>
+        </div>
+
+        <div data-bind="with: city">
+            <h5>Выберите университет:</h5>
+            <select style="width: 100%!important" class="form-control" data-bind='select2, options: univers, optionsText: "name", optionsCaption: "Выбрать...", value: $root.univer'> </select>
         </div>
 
     </div>
 
-    <div data-bind="compose:'views/extend'"></div>
+    <div class="col-md-8">
+        <!-- ko compose: rec -->
+        <!--/ko-->
+    </div>
 
 </div>
-<div class="col-md-12">
-<button class="btn btn-danger" data-bind='click: $root.Filter.save'>
+<div class="col-sm-12">
+<button class="btn btn-danger" data-bind='click: search'>
     <span>Поиск</span>
 </button>
+
+    <button class="btn btn-danger" data-bind='click: consoleJSON'>
+        <span>Консоль</span>
+    </button>
 </div>
